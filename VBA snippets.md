@@ -69,7 +69,8 @@ End sub
 Sub Bar(shps as Shapes)
   Dim shp as Shape
   for each shp in shps
-    'do stuff
+    'do stuff to shp itself, then call the same procedure on its sub-shapes
+    Bar shp.Shapes
   next shp
 End sub
 ```
