@@ -1,4 +1,4 @@
-# VBA snippets
+# VBA Basics - Getting a handle on shapes
 ## Modifiying properties of shapes
 ```VBA
 Sub Foo()
