@@ -115,7 +115,7 @@ Sub SetupShapes
 End sub
 ```
 When needed the shapes are they called by
-```
+```VBA
 For each shp in ActivePage.Shapes
   If shp.SectionExists(visSectionUser, False) then
     If shp.CellExists("user.shapeType", False) then
