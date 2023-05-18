@@ -27,18 +27,14 @@ End sub
 Regardless of the operations to perform, you need first to get a handle on the object to process.
 
 ### Interesting objects and "sub-objects"
-#### Shapes
-Shapes are the certainly the most important objects, since they are the visible result of anything you do in Visio.
-#### Application
-
-#### Documents
-
-#### Pages
-#### Windows
-#### Documents
+- **Shapes** are the certainly the most important objects, since they are the visible result of anything you do in Visio.
+- Application
+- Documents
+- Pages
+- Windows
+- Documents
 
 ### Shapes
-#### Selecting all shapes
 **direct processing on the current page**
 ```VBA
 for each shp in ActivePage.Shapes
@@ -99,8 +95,54 @@ Sub Bar(sel as Selection)
   next shp
 End sub
 ```
-#### Using the manually selected shapes
-
-#### Selecting shape by property
 
 #### Preparing shapes for selection
+If certain certain selections will be needed frequently it makes sence to shorten the selection process.
+**Define a "category" for shapes**
+```VBA
+Sub SetupShapes
+  Dim shp as Shape
+  'Use the ActiveWindow.Selection or one of the previous other methods
+  For each shp in ActiveWindow.Selection
+    If not shp.SectionExists(visSectionUser, False) then
+      shp.AddSection visSectionUser
+    End if
+    If not shp.CellExists("user.foo", False) then
+      shp.AddNamedRow visSectionUser, "shapeType", visTagDefault
+    End if
+    shp.Cells("user.shapeType").Formula = chr(34) & "xyz" & chr(34)
+  Next shp
+End sub
+```
+When needed the shapes are they called by
+```
+For each shp in ActivePage.Shapes
+  If shp.SectionExists(visSectionUser, False) then
+    If shp.CellExists("user.shapeType", False) then
+      If shp.Cells("user.shapeType").ResultStr("") = "xyz" then
+        'Do stuff
+      End if
+    End if
+  End if
+Next shp
+```
+This can be shortened by:
+```VBA
+Sub Foo
+  On Error Goto Errhandler
+  Dim shp as Shape
+  For each shp in ActivePage.Shapes
+    If shp.Cells("user.shapeType").ResultStr("") = "xyz" then 'This line will raise an error if the cell does not exist.
+      'Do stuff 1
+      'Do stuff 2
+      'Do stuff 3
+ResumePoint:
+    End if
+  Next shp
+Exit sub
+ErrHandler:
+  'optional Debug information
+  Err.clear
+  Resume ResumePoint
+End sub
+```
