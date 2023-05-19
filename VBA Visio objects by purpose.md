@@ -24,6 +24,7 @@ end if
 ```
 
 ### Selection and Shapes
+- iterate over shapes
 
 ### Application, Document and Documents
 
