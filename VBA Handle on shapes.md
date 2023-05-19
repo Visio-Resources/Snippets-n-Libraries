@@ -26,16 +26,10 @@ End sub
 ## Getting a handle on the shapes/objects to process
 Regardless of the operations to perform, you need first to get a handle on the object to process.
 
-### Interesting objects and "sub-objects"
-- **Shapes** are the certainly the most important objects, since they are the visible result of anything you do in Visio.
-- Application
-- Documents
-- Pages
-- Windows
-- Documents
+**handling the first selected shape**
+**handling exactly one shape**
 
-### Shapes
-**direct processing on the current page**
+**handling shapes with direct processing on the current page**
 ```VBA
 for each shp in ActivePage.Shapes
   'do stuff directly
