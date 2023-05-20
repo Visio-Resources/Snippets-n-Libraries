@@ -27,7 +27,26 @@ end if
 - iterate over shapes
 
 ### Application, Document and Documents
+- get a handle on the application when remote controlling Visio from another software
+- get or set the document properties
+- open, edit and save documents and stencils
 
 ### Page and Pages
+- work with on several pages
+- work with backgrounds
+- toggle the visibility of pages
 
 ### Layer and Layers
+- manage layers - adding, deleting, setting properties
+
+### Masters
+- editing masters
+
+### Styles and themes
+
+# Tasks by topic
+### Appearance of shapes
+### Pages and printing
+### Interactivity
+### Data
+### 
