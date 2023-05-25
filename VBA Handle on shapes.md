@@ -10,7 +10,7 @@ Sub Foo()
 End sub
 ```
 **Remarks:**
-- Mind the differences between Formula and FormulaU.
+- Mind the differences between Formula and FormulaU. --> [Formula vs FormulaU]
 - There are properties which are not included in the shapesheet. e.g. shp.Text
 ### Reading properties of a shape
 ```VBA
@@ -22,6 +22,7 @@ Sub Foo()
   Debug.print shp.Cells("PinX").ResultStr("")
 End sub
 ```
+more on reading shapesheet values [ResultX]
 
 ## Getting a handle on the shapes/objects to process
 Regardless of the operations to perform, you need first to get a handle on the object to process.
@@ -101,7 +102,7 @@ Sub SetupShapes
     If not shp.SectionExists(visSectionUser, False) then
       shp.AddSection visSectionUser
     End if
-    If not shp.CellExists("user.foo", False) then
+    If not shp.CellExists("user.shapeType", False) then
       shp.AddNamedRow visSectionUser, "shapeType", visTagDefault
     End if
     shp.Cells("user.shapeType").Formula = chr(34) & "xyz" & chr(34)
